@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="330" viewBox="0 0 640 330" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="330" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >D. The evasion ladder</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Retrained at each level (solid) versus a detector frozen at L0 (dashed). Negative ρ means the ranking is inverted.</text>
+<line x1="56" y1="242" x2="596" y2="242" stroke="#16181d" stroke-width="1" />
+<line x1="56" y1="62" x2="56" y2="242" stroke="#16181d" stroke-width="1" />
+<line x1="53" y1="242" x2="56" y2="242" stroke="#16181d" stroke-width="1" />
+<text x="50" y="245.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-1.0</text>
+<line x1="56" y1="242" x2="596" y2="242" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="197" x2="56" y2="197" stroke="#16181d" stroke-width="1" />
+<text x="50" y="200.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-0.5</text>
+<line x1="56" y1="197" x2="596" y2="197" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="152" x2="56" y2="152" stroke="#16181d" stroke-width="1" />
+<text x="50" y="155.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<line x1="56" y1="152" x2="596" y2="152" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="107" x2="56" y2="107" stroke="#16181d" stroke-width="1" />
+<text x="50" y="110.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.5</text>
+<line x1="56" y1="107" x2="596" y2="107" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="62" x2="56" y2="62" stroke="#16181d" stroke-width="1" />
+<text x="50" y="65.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="56" y1="62" x2="596" y2="62" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="56" y1="242" x2="56" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="56" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0</text>
+<line x1="191" y1="242" x2="191" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="191" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L1</text>
+<line x1="326" y1="242" x2="326" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="326" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L2</text>
+<line x1="461" y1="242" x2="461" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="461" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3</text>
+<line x1="596" y1="242" x2="596" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="596" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L4</text>
+<path d="M56.0,66.1 L191.0,121.0 L326.0,147.9 L461.0,106.4 L596.0,106.4" fill="none" stroke="#b45309" stroke-width="2"  opacity="1"/>
+<circle cx="56" cy="66.05691911349106" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="120.99887673279311" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="147.91208489088632" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="106.36883810449604" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="106.36883810449604" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<path d="M56.0,137.0 L191.0,137.2 L326.0,137.6 L461.0,138.7 L596.0,150.8" fill="none" stroke="#1d4ed8" stroke-width="2"  opacity="1"/>
+<circle cx="56" cy="137.0137526361034" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="137.1593571363445" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="137.64187750886418" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="138.65435352489993" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="150.8364222266843" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<path d="M56.0,64.9 L191.0,63.2 L326.0,66.1 L461.0,65.0 L596.0,90.7" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="4 3" opacity="1"/>
+<circle cx="56" cy="64.93020833333333" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="63.19843750000001" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="66.11979166666666" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="65.03958333333333" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="90.73541666666668" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<path d="M56.0,66.1 L191.0,122.9 L326.0,137.5 L461.0,84.7 L596.0,107.4" fill="none" stroke="#111827" stroke-width="2"  opacity="1"/>
+<circle cx="56" cy="66.05432578902045" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="122.8959572408638" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="137.48355051163117" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="84.71385344377384" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="107.39136852959638" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M56.0,65.9 L191.0,136.1 L326.0,163.1 L461.0,217.1 L596.0,199.0" fill="none" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="2 3" opacity="1"/>
+<line x1="56" y1="273" x2="74" y2="273" stroke="#b45309" stroke-width="2" />
+<text x="80" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing → control ρ</text>
+<line x1="246" y1="273" x2="264" y2="273" stroke="#1d4ed8" stroke-width="2" />
+<text x="270" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets → control ρ</text>
+<line x1="436" y1="273" x2="454" y2="273" stroke="#111827" stroke-width="2" />
+<text x="460" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >both → control ρ</text>
+<line x1="56" y1="289" x2="74" y2="289" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="80" y="292" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets → intent AUC</text>
+<line x1="246" y1="289" x2="264" y2="289" stroke="#6b7280" stroke-width="2" stroke-dasharray="2 3"/>
+<text x="270" y="292" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >frozen L0 detector, transferred</text>
+</svg>

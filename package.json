@@ -1,0 +1,21 @@
+{
+  "name": "attribution-testbed",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Who is driving? A replayable testbed for agent attribution from behaviour traces.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "run": "node dist/run.js",
+    "figs": "node scripts/figs.mjs",
+    "report": "node scripts/report.mjs",
+    "site": "node scripts/site.mjs",
+    "all": "npm run build && npm run run && npm run figs && npm run report && npm run site",
+    "verify": "node verify.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "playwright-core": "^1.48.0",
+    "typescript": "^5.6.3"
+  }
+}

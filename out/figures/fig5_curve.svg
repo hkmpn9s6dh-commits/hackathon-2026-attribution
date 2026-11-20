@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="250" viewBox="0 0 640 250" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="250" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >E. How long before you can say anything?</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Discrimination against the number of actions observed, for the honest (L0) and disguised (L3) fleet.</text>
+<text x="40" y="54" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >control ρ</text>
+<line x1="40" y1="206" x2="270" y2="206" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="209" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<line x1="40" y1="171" x2="270" y2="171" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="174" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.3</text>
+<line x1="40" y1="136" x2="270" y2="136" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="139" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.5</text>
+<line x1="40" y1="101" x2="270" y2="101" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="104" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.8</text>
+<line x1="40" y1="66" x2="270" y2="66" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="69" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="40" y1="206" x2="270" y2="206" stroke="#16181d" stroke-width="1" />
+<line x1="40" y1="66" x2="40" y2="206" stroke="#16181d" stroke-width="1" />
+<text x="40" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >10</text>
+<text x="97.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >20</text>
+<text x="155" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >40</text>
+<text x="212.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >80</text>
+<text x="270" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >160</text>
+<text x="155" y="236" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >actions observed</text>
+<text x="40" y="60" font-size="7.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<text x="40" y="208" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<path d="M40.0,78.3 L97.5,75.1 L155.0,72.7 L212.5,72.4 L270.0,72.3" fill="none" stroke="#111827" stroke-width="1.8"  opacity="1"/>
+<circle cx="40" cy="78.32505544806114" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="97.5" cy="75.06999385408713" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="155" cy="72.72406311126866" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="212.5" cy="72.36271353671259" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="270" cy="72.30807245166679" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M40.0,115.2 L97.5,109.8 L155.0,105.4 L212.5,104.5 L270.0,101.0" fill="none" stroke="#b45309" stroke-width="1.8" stroke-dasharray="4 3" opacity="1"/>
+<circle cx="40" cy="115.16721529112988" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="97.5" cy="109.78556337592228" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="155" cy="105.3743973141245" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="212.5" cy="104.48160896861609" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="270" cy="100.99401559892374" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<text x="350" y="54" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >intent AUC</text>
+<line x1="350" y1="206" x2="580" y2="206" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="209" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.4</text>
+<line x1="350" y1="171" x2="580" y2="171" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="174" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.6</text>
+<line x1="350" y1="136" x2="580" y2="136" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="139" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.7</text>
+<line x1="350" y1="101" x2="580" y2="101" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="104" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.8</text>
+<line x1="350" y1="66" x2="580" y2="66" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="69" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="350" y1="206" x2="580" y2="206" stroke="#16181d" stroke-width="1" />
+<line x1="350" y1="66" x2="350" y2="206" stroke="#16181d" stroke-width="1" />
+<text x="350" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >10</text>
+<text x="407.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >20</text>
+<text x="465" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >40</text>
+<text x="522.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >80</text>
+<text x="580" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >160</text>
+<text x="465" y="236" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >actions observed</text>
+<text x="350" y="60" font-size="7.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<text x="350" y="208" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.4</text>
+<path d="M350.0,101.8 L407.5,87.3 L465.0,79.3 L522.5,74.4 L580.0,74.0" fill="none" stroke="#111827" stroke-width="1.8"  opacity="1"/>
+<circle cx="350" cy="101.84799382716048" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="407.5" cy="87.25520833333333" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="465" cy="79.3167438271605" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="522.5" cy="74.43672839506172" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="580" cy="74.00462962962965" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M350.0,98.1 L407.5,89.6 L465.0,82.3 L522.5,76.8 L580.0,74.0" fill="none" stroke="#b45309" stroke-width="1.8" stroke-dasharray="4 3" opacity="1"/>
+<circle cx="350" cy="98.14544753086422" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="407.5" cy="89.63850308641976" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="465" cy="82.34818672839506" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="522.5" cy="76.84702932098764" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="580" cy="74.01813271604937" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<line x1="40" y1="236" x2="58" y2="236" stroke="#111827" stroke-width="2" />
+<text x="64" y="239" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0 honest fleet</text>
+<line x1="180" y1="236" x2="198" y2="236" stroke="#b45309" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="204" y="239" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3 disguised fleet</text>
+</svg>

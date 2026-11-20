@@ -1,0 +1,7 @@
+node_modules/
+tmp/
+out/shots/
+out/video/vo-*.mp3
+out/video/seg-*.mp4
+out/video/slide-*.png
+out/video/list.txt

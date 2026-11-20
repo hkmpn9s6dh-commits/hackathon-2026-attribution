@@ -1,0 +1,69 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width:1920px; height:1080px; background:#fbfaf7; color:#16181d;
+         font-family:"Helvetica Neue",Arial,sans-serif; overflow:hidden; }
+  .slide { width:1920px; height:1080px; padding:96px 120px 84px; display:flex; flex-direction:column; }
+  .eyebrow { font-size:22px; letter-spacing:.18em; text-transform:uppercase; color:#b45309; font-weight:600; }
+  h1 { font-family:Georgia,serif; font-size:104px; line-height:1.02; letter-spacing:-2px; margin-top:26px; }
+  h2 { font-family:Georgia,serif; font-size:64px; line-height:1.08; letter-spacing:-1px; }
+  .lede { font-family:Georgia,serif; font-size:40px; line-height:1.35; color:#374151; margin-top:34px; max-width:1500px; }
+  .byline { margin-top:auto; font-size:24px; color:#6b7280; }
+  .body { font-size:32px; line-height:1.45; color:#1f2937; margin-top:34px; }
+  .body b { color:#111827; }
+  .fig { margin-top:26px; background:#fff; border:1px solid #e5e7eb; padding:18px 22px; }
+  .fig svg { width:100%; height:auto; display:block; }
+  .foot { margin-top:auto; display:flex; justify-content:space-between; font-size:20px; color:#9ca3af; }
+  .big { display:flex; gap:56px; margin-top:54px; }
+  .kpi { flex:1; border-top:3px solid #16181d; padding-top:20px; }
+  .kpi .n { font-family:Georgia,serif; font-size:88px; line-height:1; }
+  .kpi .k { font-size:23px; color:#6b7280; margin-top:14px; line-height:1.35; }
+  ul { margin:26px 0 0 34px; }
+  li { font-size:31px; line-height:1.5; margin-bottom:14px; }
+  .cols { display:flex; gap:60px; align-items:flex-start; }
+  .cols > div { flex:1; }
+</style></head><body>
+<div class="slide">
+    <div class="eyebrow">3 · The result</div>
+    <h2>Timing knows the leash. Targets know the hand.</h2>
+    <div class="fig"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="260" viewBox="0 0 640 260" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="260" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >C. Two channels, three questions</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Bars are the same models on the same folds. Panel B is the trap: it looks like an intent classifier but it is reading the leash.</text>
+<text x="16" y="56" font-size="9" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >A. Does it know the leash?</text>
+<text x="16" y="68" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Spearman ρ</text>
+<line x1="22" y1="194" x2="192" y2="194" stroke="#16181d" stroke-width="1" />
+<line x1="22" y1="194" x2="192" y2="194" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="24" y="191" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<rect x="38" y="81.31907172657715" width="56" height="112.68092827342285" fill="#b45309" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="66" y="75.31907172657715" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.95</text>
+<text x="66" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing</text>
+<rect x="116" y="174.35136456733554" width="56" height="19.64863543266447" fill="#1d4ed8" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="144" y="168.35136456733554" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.17</text>
+<text x="144" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets</text>
+<text x="224" y="56" font-size="9" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >B. Intent, all five classes</text>
+<text x="224" y="68" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >AUC</text>
+<line x1="230" y1="194" x2="400" y2="194" stroke="#16181d" stroke-width="1" />
+<line x1="230" y1="174.33333333333334" x2="400" y2="174.33333333333334" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="232" y="171.33333333333334" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<rect x="246" y="94.990625" width="56" height="99.009375" fill="#b45309" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="274" y="88.990625" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.90</text>
+<text x="274" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing</text>
+<rect x="324" y="85.19029706790124" width="56" height="108.80970293209876" fill="#1d4ed8" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="352" y="79.19029706790124" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.95</text>
+<text x="352" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets</text>
+<text x="432" y="56" font-size="9" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >C. Intent, leash held fixed</text>
+<text x="432" y="68" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >AUC</text>
+<line x1="438" y1="194" x2="608" y2="194" stroke="#16181d" stroke-width="1" />
+<line x1="438" y1="174.33333333333334" x2="608" y2="174.33333333333334" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="440" y="171.33333333333334" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<rect x="454" y="177.7613425925926" width="56" height="16.238657407407402" fill="#b45309" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="482" y="171.7613425925926" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.48</text>
+<text x="482" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing</text>
+<rect x="532" y="82.05023148148149" width="56" height="111.94976851851851" fill="#1d4ed8" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="560" y="76.05023148148149" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.97</text>
+<text x="560" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets</text>
+<text x="16" y="244" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' font-style="italic">A is what the clock knows; C is what the file paths know; B is what a model reports when nobody holds the leash fixed.</text>
+</svg></div>
+    <div class="body">An intent AUC of 0.90 from timing looks excellent — until the leash is held fixed, where it falls to <b>0.48</b>, i.e. chance.</div>
+  <div class="foot"><span>Discipline is a choice · Agent Attribution Hackathon 2026</span><span>4/7</span></div></div>
+</body></html>

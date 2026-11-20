@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Discipline is a choice</title>
+<style>
+  @page { size: A4; margin: 15mm 15mm 13mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; color: #16181d; font-size: 9.3pt; line-height: 1.40; margin: 0; }
+  h1 { font-family: Georgia, serif; font-size: 20pt; line-height: 1.12; margin: 0 0 1.6mm; letter-spacing: -0.2px; }
+  h2 { font-size: 11pt; margin: 4.4mm 0 1.6mm; border-bottom: 0.6pt solid #d1d5db; padding-bottom: 0.8mm; }
+  h3 { font-size: 9.7pt; margin: 3mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  .sub { font-size: 11.2pt; color: #4b5563; margin: 0 0 2.6mm; font-family: Georgia, serif; font-style: italic; }
+  .byline { font-size: 8.2pt; color: #6b7280; border-top: 0.6pt solid #e5e7eb; border-bottom: 0.6pt solid #e5e7eb; padding: 1.4mm 0; margin-bottom: 3mm; }
+  .abstract { background: #f9fafb; border-left: 2.4pt solid #111827; padding: 2.8mm 3.6mm; font-size: 8.9pt; }
+  .abstract b { font-variant: small-caps; letter-spacing: 0.4px; }
+  figure { margin: 2mm 0 2.6mm; page-break-inside: avoid; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { font-size: 8pt; color: #4b5563; margin-top: 1mm; }
+  table { width: 100%; border-collapse: collapse; font-size: 8.2pt; margin: 1.6mm 0 2.6mm; }
+  th, td { text-align: left; padding: 1.1mm 1.5mm; border-bottom: 0.5pt solid #e5e7eb; vertical-align: top; }
+  th { font-size: 7.8pt; text-transform: uppercase; letter-spacing: 0.3px; color: #6b7280; border-bottom: 0.7pt solid #9ca3af; }
+  .callout { border: 0.8pt solid #111827; padding: 2.4mm 3mm; margin: 2.6mm 0; font-size: 9.3pt; }
+  .callout b { display: block; font-size: 7.8pt; text-transform: uppercase; letter-spacing: 0.6px; color: #6b7280; margin-bottom: 0.8mm; }
+  code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 8pt; background: #f3f4f6; padding: 0 1px; }
+  .refs { font-size: 7.6pt; color: #374151; }
+  .refs li { margin-bottom: 0.8mm; }
+  .cn { font-size: 8.4pt; color: #374151; border-top: 0.5pt solid #e5e7eb; padding-top: 2mm; margin-top: 2.6mm; }
+  ul, ol { margin: 0 0 2.2mm 4.2mm; padding: 0; }
+  li { margin-bottom: 0.9mm; text-align: justify; }
+</style></head>
+<body>
+
+<h1>Discipline is a choice</h1>
+<div class="sub">Behavioural attribution measures the leash, not the hand — and the leash is for sale</div>
+<div class="byline">Submission to the <b>Agent Attribution Hackathon</b> (Apart Research, 11–13 December 2026) · Track 2, Attribution · Code and every number in this report: <code>github.com/hkmpn9s6dh-commits/hackathon-2026-attribution</code> · 20 November 2026</div>
+
+<div class="abstract">
+<b>Abstract.</b>
+A responder arriving at an agent incident needs a fact the logs do not contain: is a human steering this, and how tightly? We build a replayable testbed from the five actor types in the sprint brief, two observable channels — <i>when</i> the agent acts and <i>what</i> it touches — and five evasion levels, with 600 traces per level and grouped five-fold cross-validation. Timing recovers how tightly a human is in the loop (ρ = 0.95). It appears to recover intent too (AUC = 0.90) — until the leash is held fixed, at which point it falls to chance (AUC = 0.48). The apparent intent signal is the leash wearing intent's clothes. Target choice shows the mirror image: intent AUC = 0.95, leash ρ = 0.10 once intent is fixed. Under disguise the two channels behave differently. An autonomous agent that waits like a supervised one becomes indistinguishable from one (AUC 1.00 → 0.51) at a measured cost of 60 seconds per action; a human who auto-approves pays nothing and erases the channel outright. A detector fitted on the honest fleet does not decay — it inverts (ρ = -0.72). Camouflaged payloads collapse the target channel (AUC 0.95 → 0.53) for 63% of the actor's sensitive surface. Behaviour can tell you to go and look. It cannot tell you who to call.
+</div>
+
+<h2>1. The question, and why it is not academic</h2>
+<p>When an agent shows up in an incident — a supply-chain commit, an escaped process, a run that spent money — the first question a responder asks is not "which model" but "who, if anyone, is steering it". A human reachable by phone, a human who has not opened the logs in a week, and an agent nobody is watching call for three different responses: contact, escalation, containment. Today the three look alike from the outside, because in all three cases <i>the text was written by the AI</i>. Text detectors and assistant-fingerprinting tools inherit that blindness: they classify the model, not the hand on the leash [1,3].</p>
+<p>The sprint brief proposes three ways out: causal timing, identity probes, and vendor attestation [2]. This report is about the first, and about what happens to it when the observed party knows it is being observed. We do not have the incident logs the organisers will score against, and we do not pretend to: our claim is narrower and, we think, more useful — that "can behaviour attribute an actor?" is a question with a measurable answer and a price tag, and that the answer is uncomfortable for anyone planning to deploy such a classifier.</p>
+
+<h2>2. Testbed: what is observable, and what is only latent</h2>
+<p>We implement the brief's five actor types (Table 1). What makes the problem hard is not the number of classes. It is that the classes differ along two axes — <b>how tight the leash is</b> (ordinal: 0 = nobody steering, 3 = a human on every step) and <b>whether the human is benign</b> (a binary we never observe) — and the two axes are entangled in the label in a way that flatters naive evaluation (Section 4.3).</p>
+
+<table>
+<tr><th>Actor type</th><th>Leash</th><th>Who is in the loop</th><th>Intent</th><th>Wait per action, L0</th></tr>
+<tr><td><b>A. rogue agent</b></td><td>0</td><td>nobody</td><td>non-benign</td><td>1.2 s</td></tr>
+<tr><td><b>B. close human (non-benign)</b></td><td>3</td><td>a human on every step</td><td>non-benign</td><td>60.0 s</td></tr>
+<tr><td><b>C. loose human (non-benign)</b></td><td>2</td><td>a human on a share of steps</td><td>non-benign</td><td>16.2 s</td></tr>
+<tr><td><b>D. very-loose human (benign)</b></td><td>1</td><td>a human on a share of steps</td><td>benign</td><td>5.6 s</td></tr>
+<tr><td><b>E. loose human (benign)</b></td><td>2</td><td>a human on a share of steps</td><td>benign</td><td>16.0 s</td></tr>
+</table>
+
+<p>A trace is a sequence of events over a 3–5 hour window: inbound messages, and actions carrying a tool (<code>edit</code>, <code>read</code>, <code>shell</code>, <code>commit</code>, <code>net</code>), a target path, a payload size and a shell-chain length. An action either waits for a human — it lands a human-latency interval after its scheduled tick, usually after a request message — or it does not. The share of actions that wait is the mixture weight <i>p</i>. It is the only thing that separates the actor types in the timing channel, and it is what a responder means by "tightly supervised".</p>
+
+<figure style="width:100%"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="260" viewBox="0 0 640 260" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="260" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >A. The observable problem</text>
+<text x="0" y="32" font-size="9.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Five actor types, one ordinal axis (how tightly a human is in the loop), and two channels a responder can actually read.</text>
+<line x1="70" y1="132" x2="560" y2="132" stroke="#16181d" stroke-width="1.2" />
+<line x1="70" y1="128" x2="70" y2="136" stroke="#16181d" stroke-width="1" />
+<text x="70" y="152" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >nobody steering</text>
+<line x1="233.33333333333334" y1="128" x2="233.33333333333334" y2="136" stroke="#16181d" stroke-width="1" />
+<text x="233.33333333333334" y="152" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >very loose</text>
+<line x1="396.6666666666667" y1="128" x2="396.6666666666667" y2="136" stroke="#16181d" stroke-width="1" />
+<text x="396.6666666666667" y="152" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >loose</text>
+<line x1="560" y1="128" x2="560" y2="136" stroke="#16181d" stroke-width="1" />
+<text x="560" y="152" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >tight</text>
+<circle cx="70" cy="100" r="7" fill="#16181d" stroke="#16181d" stroke-width="1.2"/>
+<text x="70" y="103.2" font-size="8" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >A</text>
+<text x="70" y="120" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A rogue</text>
+<circle cx="233.33333333333334" cy="88" r="7" fill="#ffffff" stroke="#16181d" stroke-width="1.2"/>
+<text x="233.33333333333334" y="91.2" font-size="8" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >D</text>
+<text x="233.33333333333334" y="75" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D v.loose</text>
+<circle cx="378.6666666666667" cy="100" r="7" fill="#16181d" stroke="#16181d" stroke-width="1.2"/>
+<text x="378.6666666666667" y="103.2" font-size="8" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >C</text>
+<text x="378.6666666666667" y="120" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C loose</text>
+<circle cx="414.6666666666667" cy="88" r="7" fill="#ffffff" stroke="#16181d" stroke-width="1.2"/>
+<text x="414.6666666666667" y="91.2" font-size="8" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >E</text>
+<text x="414.6666666666667" y="75" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E loose+</text>
+<circle cx="560" cy="88" r="7" fill="#ffffff" stroke="#16181d" stroke-width="1.2"/>
+<text x="560" y="91.2" font-size="8" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >B</text>
+<text x="560" y="75" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B close</text>
+<rect x="70" y="176" width="232" height="54" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="0" opacity="1"/>
+<text x="82" y="194" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >Channel 1 — when</text>
+<text x="82" y="210" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >tick alignment, reply latency after a</text>
+<text x="82" y="222" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >message, burstiness, actions per hour</text>
+<rect x="318" y="176" width="242" height="54" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="0" opacity="1"/>
+<text x="330" y="194" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >Channel 2 — what</text>
+<text x="330" y="210" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets, tools, shell chain length,</text>
+<text x="330" y="222" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >share of actions on sensitive paths</text>
+<text x="70" y="252" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' font-style="italic">Latent (never observed): who the human is, and what they intend.</text>
+</svg><figcaption>Figure 1. The observable problem. Five actor types on one ordinal axis; two channels available to a responder; intent latent.</figcaption></figure>
+
+<p>Three design decisions carry the report. First, <b>timing and content are generated by separate random streams</b>: with one stream, drawing a different target file shifts every later draw and leaks the label into the timing, and a first version of this testbed did exactly that (a timing-only classifier scored AUC 0.90 on intent for no reason a responder could act on). Second, <b>no event carries a label</b> — there is no <code>approved_by</code> field, because a detector that can read it is not a detector. Third, <b>tools follow targets, not labels</b>: a workflow file gets edited, a key gets read. Wherever we allowed a class signature to leak into a second statistic, it did, and the leakage always looked like a great result.</p>
+
+<h2>3. Method</h2>
+<p><b>Features.</b> Thirteen timing features (inter-arrival median and 90th percentile, coefficient of variation, binned entropy, Fano factor over minute buckets, phase concentration on the 60 s grid, latency after an inbound message at three cut-offs, coverage, share of gaps over five minutes) and ten target features (share of actions on sensitive paths — CI workflows, keys, registry config, install hooks — directory entropy, target diversity, tool mix, shell-chain length, edit size). No feature sees a label, an org id or a scenario id.</p>
+<p><b>Models.</b> Multinomial logistic regression and a small gradient-boosted tree ensemble (depth 2, 45 rounds, deterministic), each with three heads: the five-way label, the ordinal leash, the intent flag. Trees are included because a linear model could understate what a flexible detector can do; in practice the two agree closely, which is itself reassuring — the ceiling here is the channel, not the model.</p>
+<p><b>Evaluation.</b> Five-fold cross-validation grouped by <i>org</i>, never by trace: an actor's other traces are never in the training fold, so a score is a statement about an actor the model has not met. Chance is measured, not assumed — labels are permuted across orgs five times (ρ = -0.01, AUC = 0.48).</p>
+<p><b>Evasion ladder.</b> Four levels, each a plausible move by one side (Table 2). Every level is generated from the same seeds as L0, so the same actor does the same job with a different discipline: the comparison is paired, and only the discipline changes.</p>
+<p><b>Transfer and matched pairs.</b> At each level we also score a detector <i>frozen at L0</i> — the deployment that actually happens, a model fitted on last quarter's incidents. And because our central claim is about what a channel can identify at all, we run matched comparisons: two classes that share a leash for intent, three classes that share intent for the leash, and two pairs that share a mixture weight outright.</p>
+
+<table>
+<tr><th>Level</th><th>Move</th><th>What it attacks</th><th>Who pays</th></tr>
+<tr><td>L0</td><td>nobody disguises anything</td><td>—</td><td>—</td></tr>
+<tr><td>L1</td><td>the agent performs supervision (waits, asks)</td><td>tick alignment, message coupling</td><td>the attacker: latency</td></tr>
+<tr><td>L2</td><td>the human delegates (auto-approve, batch)</td><td>human latency, request trail</td><td>the defender: oversight</td></tr>
+<tr><td>L3</td><td>both at once</td><td>the mapping from behaviour to role</td><td>both</td></tr>
+<tr><td>L4</td><td>L3 + payload camouflage</td><td>target choice</td><td>the attacker: capability</td></tr>
+</table>
+
+<h2>4. Results</h2>
+
+<h3>4.1 Five-way accuracy is the wrong scoreboard</h3>
+<p>On the honest fleet the five-way problem is nearly solved: macro-F1 0.93, with most residual error between the two classes that share a leash setting (Figure 2). That number is a trap of a different kind. It says a classifier can reproduce the brief's taxonomy on data from the same generator. It says nothing about whether the quantity is stable, whether the channel is doing the work, or what happens when the observed party stops cooperating — which is the rest of this section.</p>
+
+<figure style="width:58%"><svg xmlns="http://www.w3.org/2000/svg" width="330" height="320" viewBox="0 0 330 320" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="330" height="320" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >B. Five-way confusion, L0</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >macro-F1 0.93 · rows = truth, columns = prediction</text>
+<text x="84" y="86" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A rogue</text>
+<rect x="92" y="62" width="38" height="38" fill="rgba(17,24,39,0.960)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="111" y="86" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >120</text>
+<rect x="132" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="151" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="172" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="191" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="212" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="231" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="252" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="271" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<text x="84" y="126" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B close</text>
+<rect x="92" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="111" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="132" y="102" width="38" height="38" fill="rgba(17,24,39,0.960)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="151" y="126" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >120</text>
+<rect x="172" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="191" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="212" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="231" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="252" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="271" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<text x="84" y="166" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C loose</text>
+<rect x="92" y="142" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="111" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="132" y="142" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="151" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="172" y="142" width="38" height="38" fill="rgba(17,24,39,0.855)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="191" y="166" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >106</text>
+<rect x="212" y="142" width="38" height="38" fill="rgba(17,24,39,0.105)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="231" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >6</text>
+<rect x="252" y="142" width="38" height="38" fill="rgba(17,24,39,0.120)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="271" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >8</text>
+<text x="84" y="206" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D v.loose</text>
+<rect x="92" y="182" width="38" height="38" fill="rgba(17,24,39,0.075)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="111" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >2</text>
+<rect x="132" y="182" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="151" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="172" y="182" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="191" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="212" y="182" width="38" height="38" fill="rgba(17,24,39,0.945)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="231" y="206" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >118</text>
+<rect x="252" y="182" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="271" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<text x="84" y="246" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E loose+</text>
+<rect x="92" y="222" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="111" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="132" y="222" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="151" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="172" y="222" width="38" height="38" fill="rgba(17,24,39,0.195)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="191" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >18</text>
+<rect x="212" y="222" width="38" height="38" fill="rgba(17,24,39,0.098)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="231" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >5</text>
+<rect x="252" y="222" width="38" height="38" fill="rgba(17,24,39,0.788)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="271" y="246" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >97</text>
+<text x="111" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A</text>
+<text x="151" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B</text>
+<text x="191" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C</text>
+<text x="231" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D</text>
+<text x="271" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E</text>
+<text x="171" y="32" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >predicted</text>
+</svg><figcaption>Figure 2. Confusion on the honest fleet (all features, gradient boosting). Residual error sits between the two classes that differ only in intent.</figcaption></figure>
+
+<h3>4.2 The clock knows the leash; the file paths know the hand</h3>
+<p>Figure 3A is the clean result. Timing recovers the leash almost perfectly (ρ = 0.95), and target features are nearly blind to it (ρ = 0.17). Figure 3C is the same comparison for intent with the leash held fixed: targets separate benign from non-benign actors at AUC 0.97, timing at 0.48 — chance.</p>
+<p>This is not a modelling artefact; it follows from what the classes are. Timing sees a mixture: what share of actions waited, and for how long. That share describes an <i>arrangement</i>, and an arrangement is compatible with any intent. Targets see a choice: which files an actor reaches for at three in the morning. That choice describes a <i>job</i>. A responder asking "is anyone watching this" should read the clock; a responder asking "is this hostile" should read the diff.</p>
+
+<figure style="width:100%"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="260" viewBox="0 0 640 260" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="260" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >C. Two channels, three questions</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Bars are the same models on the same folds. Panel B is the trap: it looks like an intent classifier but it is reading the leash.</text>
+<text x="16" y="56" font-size="9" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >A. Does it know the leash?</text>
+<text x="16" y="68" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Spearman ρ</text>
+<line x1="22" y1="194" x2="192" y2="194" stroke="#16181d" stroke-width="1" />
+<line x1="22" y1="194" x2="192" y2="194" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="24" y="191" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<rect x="38" y="81.31907172657715" width="56" height="112.68092827342285" fill="#b45309" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="66" y="75.31907172657715" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.95</text>
+<text x="66" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing</text>
+<rect x="116" y="174.35136456733554" width="56" height="19.64863543266447" fill="#1d4ed8" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="144" y="168.35136456733554" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.17</text>
+<text x="144" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets</text>
+<text x="224" y="56" font-size="9" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >B. Intent, all five classes</text>
+<text x="224" y="68" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >AUC</text>
+<line x1="230" y1="194" x2="400" y2="194" stroke="#16181d" stroke-width="1" />
+<line x1="230" y1="174.33333333333334" x2="400" y2="174.33333333333334" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="232" y="171.33333333333334" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<rect x="246" y="94.990625" width="56" height="99.009375" fill="#b45309" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="274" y="88.990625" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.90</text>
+<text x="274" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing</text>
+<rect x="324" y="85.19029706790124" width="56" height="108.80970293209876" fill="#1d4ed8" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="352" y="79.19029706790124" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.95</text>
+<text x="352" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets</text>
+<text x="432" y="56" font-size="9" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >C. Intent, leash held fixed</text>
+<text x="432" y="68" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >AUC</text>
+<line x1="438" y1="194" x2="608" y2="194" stroke="#16181d" stroke-width="1" />
+<line x1="438" y1="174.33333333333334" x2="608" y2="174.33333333333334" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="440" y="171.33333333333334" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<rect x="454" y="177.7613425925926" width="56" height="16.238657407407402" fill="#b45309" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="482" y="171.7613425925926" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.48</text>
+<text x="482" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing</text>
+<rect x="532" y="82.05023148148149" width="56" height="111.94976851851851" fill="#1d4ed8" stroke="none" stroke-width="1" rx="0" opacity="0.88"/>
+<text x="560" y="76.05023148148149" font-size="10" fill="#16181d" text-anchor="middle" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >0.97</text>
+<text x="560" y="208" font-size="8.5" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets</text>
+<text x="16" y="244" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' font-style="italic">A is what the clock knows; C is what the file paths know; B is what a model reports when nobody holds the leash fixed.</text>
+</svg><figcaption>Figure 3. Same models, same folds, three questions. A and C are the honest readings; B is what a model reports when the leash is not held fixed.</figcaption></figure>
+
+<h3>4.3 Why an intent AUC of 0.90 is a trap</h3>
+<p>Figure 3B is the panel we expect most pipelines to publish. Feed timing features to a classifier and ask it for intent, and it returns AUC 0.90 — an excellent-looking number. It is almost entirely the leash wearing intent's clothes. Three of the five classes are non-benign and they sit at three different leash settings; the two benign classes sit at two others. Timing reads the leash at ρ = 0.95, and the taxonomy supplies the rest. Hold the leash fixed — compare the non-benign loose human against the benign loose human, who differ in nothing observable except what they touch — and the same features fall to 0.48.</p>
+<p>The same confound runs the other way, more weakly: target features pick up ρ = 0.17 for the leash across all five classes, and 0.10 once intent is fixed. Any real incident dataset will have this entanglement, because non-benign actors are not a random sample of leash settings. A pipeline that does not hold one axis fixed will report the other axis and call it detection.</p>
+<div class="callout"><b>Practical reading</b>An intent classifier built on behaviour and validated on a mixed fleet is measuring the fleet's composition. Re-run it on a matched subset before you believe it.</div>
+
+<h3>4.4 Under disguise a pair collapses, and a frozen model inverts</h3>
+<p>At L1 an autonomous agent waits before every action and asks for permission first. On timing alone it is then indistinguishable from a close human: pairwise AUC 1.00 at L0, 0.51 at L1 — chance, and confirmed by an explicit two-class test between a rogue agent at L1 and a close human at L0 (0.58). At L2 the human auto-approves; now <i>every</i> class looks unsupervised, and the ordinal read-out falls from 0.95 to 0.16. Neither move requires an exploit. The first costs the attacker waiting time; the second costs the defender nothing at all.</p>
+<p>Figure 4 is the part we would put in front of anyone deploying such a model. Retrained at each level, timing holds up surprisingly well — a mixture weight is still a mixture weight. But a detector <b>frozen at L0</b> does not decay toward chance. It falls to ρ = +0.18 at L1, −0.12 at L2, and −0.72 at L3, when both sides have swapped discipline: it has learned the <i>sign</i> of the relationship, and the sign is now wrong.</p>
+<div class="callout"><b>The failure mode to fear</b>A model that reports "supervised, benign-looking workflow" with high confidence about an autonomous, non-benign one is worse than no model at all, because nothing in its output says so.</div>
+
+<figure style="width:100%"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="330" viewBox="0 0 640 330" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="330" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >D. The evasion ladder</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Retrained at each level (solid) versus a detector frozen at L0 (dashed). Negative ρ means the ranking is inverted.</text>
+<line x1="56" y1="242" x2="596" y2="242" stroke="#16181d" stroke-width="1" />
+<line x1="56" y1="62" x2="56" y2="242" stroke="#16181d" stroke-width="1" />
+<line x1="53" y1="242" x2="56" y2="242" stroke="#16181d" stroke-width="1" />
+<text x="50" y="245.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-1.0</text>
+<line x1="56" y1="242" x2="596" y2="242" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="197" x2="56" y2="197" stroke="#16181d" stroke-width="1" />
+<text x="50" y="200.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-0.5</text>
+<line x1="56" y1="197" x2="596" y2="197" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="152" x2="56" y2="152" stroke="#16181d" stroke-width="1" />
+<text x="50" y="155.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<line x1="56" y1="152" x2="596" y2="152" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="107" x2="56" y2="107" stroke="#16181d" stroke-width="1" />
+<text x="50" y="110.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.5</text>
+<line x1="56" y1="107" x2="596" y2="107" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="53" y1="62" x2="56" y2="62" stroke="#16181d" stroke-width="1" />
+<text x="50" y="65.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="56" y1="62" x2="596" y2="62" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="56" y1="242" x2="56" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="56" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0</text>
+<line x1="191" y1="242" x2="191" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="191" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L1</text>
+<line x1="326" y1="242" x2="326" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="326" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L2</text>
+<line x1="461" y1="242" x2="461" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="461" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3</text>
+<line x1="596" y1="242" x2="596" y2="245" stroke="#16181d" stroke-width="1" />
+<text x="596" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L4</text>
+<path d="M56.0,66.1 L191.0,121.0 L326.0,147.9 L461.0,106.4 L596.0,106.4" fill="none" stroke="#b45309" stroke-width="2"  opacity="1"/>
+<circle cx="56" cy="66.05691911349106" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="120.99887673279311" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="147.91208489088632" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="106.36883810449604" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="106.36883810449604" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<path d="M56.0,137.0 L191.0,137.2 L326.0,137.6 L461.0,138.7 L596.0,150.8" fill="none" stroke="#1d4ed8" stroke-width="2"  opacity="1"/>
+<circle cx="56" cy="137.0137526361034" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="137.1593571363445" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="137.64187750886418" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="138.65435352489993" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="150.8364222266843" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<path d="M56.0,64.9 L191.0,63.2 L326.0,66.1 L461.0,65.0 L596.0,90.7" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="4 3" opacity="1"/>
+<circle cx="56" cy="64.93020833333333" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="63.19843750000001" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="66.11979166666666" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="65.03958333333333" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="90.73541666666668" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<path d="M56.0,66.1 L191.0,122.9 L326.0,137.5 L461.0,84.7 L596.0,107.4" fill="none" stroke="#111827" stroke-width="2"  opacity="1"/>
+<circle cx="56" cy="66.05432578902045" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="191" cy="122.8959572408638" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="326" cy="137.48355051163117" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="461" cy="84.71385344377384" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="596" cy="107.39136852959638" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M56.0,65.9 L191.0,136.1 L326.0,163.1 L461.0,217.1 L596.0,199.0" fill="none" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="2 3" opacity="1"/>
+<line x1="56" y1="273" x2="74" y2="273" stroke="#b45309" stroke-width="2" />
+<text x="80" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing → control ρ</text>
+<line x1="246" y1="273" x2="264" y2="273" stroke="#1d4ed8" stroke-width="2" />
+<text x="270" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets → control ρ</text>
+<line x1="436" y1="273" x2="454" y2="273" stroke="#111827" stroke-width="2" />
+<text x="460" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >both → control ρ</text>
+<line x1="56" y1="289" x2="74" y2="289" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="80" y="292" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets → intent AUC</text>
+<line x1="246" y1="289" x2="264" y2="289" stroke="#6b7280" stroke-width="2" stroke-dasharray="2 3"/>
+<text x="270" y="292" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >frozen L0 detector, transferred</text>
+</svg><figcaption>Figure 4. The evasion ladder. Solid: retrained at each level. Grey dashed: a detector fitted at L0 and deployed unchanged — it inverts at L3.</figcaption></figure>
+
+<h3>4.5 The price list</h3>
+<p>Attribution work usually stops at "the classifier can be fooled". The more useful question for a defender is what the fooling costs the fooler. All three numbers below are measured from the generated traces, not assumed:</p>
+<ul>
+<li><b>Waiting is expensive.</b> To look supervised, the autonomous agent at L1 waits a median of 42 s before every action: mean delay rises from 1.2 s to 60.0 s per action. With an action every two minutes, that is a 49% throughput tax on every step of the campaign.</li>
+<li><b>Camouflage costs capability.</b> At L4 the non-benign actors touch sensitive paths 34% of the time, and 13% when dressed as ordinary work. The disguise works — target intent AUC falls from 0.95 to 0.53, i.e. to chance — because the actor gave up most of what made it worth detecting.</li>
+<li><b>Delegation is free for the attacker.</b> At L2 the human auto-approves and pays nothing; the cost lands on the defender's oversight. This is the cheapest evasion in the ladder and the only one that needs no adversary — just a default setting.</li>
+</ul>
+<table>
+<tr><th>Level</th><th>Move</th><th>Measured price</th><th>Paid by</th></tr>
+<tr><td>L1</td><td>the agent performs supervision</td><td>+59 s per action (1.2 → 60.0 s)</td><td>the attacker</td></tr>
+<tr><td>L2</td><td>the human auto-approves</td><td>no measurable cost in the trace</td><td>the defender (oversight)</td></tr>
+<tr><td>L4</td><td>payload camouflage</td><td>sensitive surface 34% → 13%</td><td>the attacker (capability)</td></tr>
+</table>
+
+<h3>4.6 How much behaviour before you can say anything?</h3>
+<p>Incident response has a clock. Figure 5 asks how discrimination grows with the number of actions observed. The leash is readable from about ten actions (ρ = 0.91) and saturates by forty; intent from targets climbs more slowly, because file choices are noisier than waiting times, and needs roughly eighty actions to reach 0.96. Waiting for more data does help — while the channel still carries the signal.</p>
+<p>The disguised fleet is the interesting exception. At L3 both curves stay high, but not because the model got better: once discipline itself is correlated with intent, a leash detector becomes an intent detector for free. That is Section 4.3's confound returning in adversarial dress, and it is the strongest argument for the matched comparison in Figure 3C: a number that survives at L3 may be measuring the disguise, not the actor.</p>
+
+<figure style="width:100%"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="250" viewBox="0 0 640 250" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="250" fill="#ffffff"/>
+<text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >E. How long before you can say anything?</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Discrimination against the number of actions observed, for the honest (L0) and disguised (L3) fleet.</text>
+<text x="40" y="54" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >control ρ</text>
+<line x1="40" y1="206" x2="270" y2="206" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="209" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<line x1="40" y1="171" x2="270" y2="171" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="174" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.3</text>
+<line x1="40" y1="136" x2="270" y2="136" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="139" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.5</text>
+<line x1="40" y1="101" x2="270" y2="101" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="104" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.8</text>
+<line x1="40" y1="66" x2="270" y2="66" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="36" y="69" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="40" y1="206" x2="270" y2="206" stroke="#16181d" stroke-width="1" />
+<line x1="40" y1="66" x2="40" y2="206" stroke="#16181d" stroke-width="1" />
+<text x="40" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >10</text>
+<text x="97.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >20</text>
+<text x="155" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >40</text>
+<text x="212.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >80</text>
+<text x="270" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >160</text>
+<text x="155" y="236" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >actions observed</text>
+<text x="40" y="60" font-size="7.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<text x="40" y="208" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<path d="M40.0,78.3 L97.5,75.1 L155.0,72.7 L212.5,72.4 L270.0,72.3" fill="none" stroke="#111827" stroke-width="1.8"  opacity="1"/>
+<circle cx="40" cy="78.32505544806114" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="97.5" cy="75.06999385408713" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="155" cy="72.72406311126866" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="212.5" cy="72.36271353671259" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="270" cy="72.30807245166679" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M40.0,115.2 L97.5,109.8 L155.0,105.4 L212.5,104.5 L270.0,101.0" fill="none" stroke="#b45309" stroke-width="1.8" stroke-dasharray="4 3" opacity="1"/>
+<circle cx="40" cy="115.16721529112988" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="97.5" cy="109.78556337592228" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="155" cy="105.3743973141245" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="212.5" cy="104.48160896861609" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="270" cy="100.99401559892374" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<text x="350" y="54" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >intent AUC</text>
+<line x1="350" y1="206" x2="580" y2="206" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="209" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.4</text>
+<line x1="350" y1="171" x2="580" y2="171" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="174" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.6</text>
+<line x1="350" y1="136" x2="580" y2="136" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="139" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.7</text>
+<line x1="350" y1="101" x2="580" y2="101" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="104" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.8</text>
+<line x1="350" y1="66" x2="580" y2="66" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<text x="346" y="69" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="350" y1="206" x2="580" y2="206" stroke="#16181d" stroke-width="1" />
+<line x1="350" y1="66" x2="350" y2="206" stroke="#16181d" stroke-width="1" />
+<text x="350" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >10</text>
+<text x="407.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >20</text>
+<text x="465" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >40</text>
+<text x="522.5" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >80</text>
+<text x="580" y="220" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >160</text>
+<text x="465" y="236" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >actions observed</text>
+<text x="350" y="60" font-size="7.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<text x="350" y="208" font-size="7.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.4</text>
+<path d="M350.0,101.8 L407.5,87.3 L465.0,79.3 L522.5,74.4 L580.0,74.0" fill="none" stroke="#111827" stroke-width="1.8"  opacity="1"/>
+<circle cx="350" cy="101.84799382716048" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="407.5" cy="87.25520833333333" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="465" cy="79.3167438271605" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="522.5" cy="74.43672839506172" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="580" cy="74.00462962962965" r="2.4" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M350.0,98.1 L407.5,89.6 L465.0,82.3 L522.5,76.8 L580.0,74.0" fill="none" stroke="#b45309" stroke-width="1.8" stroke-dasharray="4 3" opacity="1"/>
+<circle cx="350" cy="98.14544753086422" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="407.5" cy="89.63850308641976" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="465" cy="82.34818672839506" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="522.5" cy="76.84702932098764" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="580" cy="74.01813271604937" r="2.4" fill="#b45309" stroke="none" stroke-width="1"/>
+<line x1="40" y1="236" x2="58" y2="236" stroke="#111827" stroke-width="2" />
+<text x="64" y="239" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0 honest fleet</text>
+<line x1="180" y1="236" x2="198" y2="236" stroke="#b45309" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="204" y="239" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3 disguised fleet</text>
+</svg><figcaption>Figure 5. Discrimination versus actions observed. The honest fleet rewards patience; the disguised fleet rewards suspicion, because discipline has become a proxy for intent.</figcaption></figure>
+
+<h2>5. What a responder should do with this</h2>
+<ol>
+<li><b>Report the mixture, not the label.</b> "38% of actions waited for a human, median 41 s, n = 214" is defensible and auditable. "This was a supervised human" is not. Refuse the label even when the classifier is confident — especially then.</li>
+<li><b>Hold the other axis fixed before believing an intent number.</b> If a model separates benign from non-benign, re-run it on actors with the same leash. If the number collapses, the model was reading supervision.</li>
+<li><b>Never deploy a frozen behavioural model without a matched-pair audit.</b> The L3 failure is not a subtle drift; it is a sign flip. Ship the audit with the model: can it still separate the two classes it was trained on, on this month's traffic? If not, fail closed.</li>
+<li><b>Prefer the channel the adversary cannot choose.</b> Timing and targets are both self-reported. Attestation — a signed agent identity, an operator registry entry — is the only channel in the brief that binds a claim to a party. Behaviour tells you where to look. It does not tell you who to call.</li>
+</ol>
+
+<h2>6. Limitations</h2>
+<p><b>This is a simulator.</b> Traces come from an explicit model of supervision, not from recorded deployments. The model is stated in Section 2 and implemented in <code>src/gen.ts</code> in fewer than two hundred lines; where it is wrong, our numbers are wrong in a way a reader can check. The most fragile assumption is that a human's influence appears as a per-action wait. Real supervisors intervene in bursts, edit the plan rather than the action, and leave traces in channels we do not model — issues, chat, calendar. That assumption flatters timing if anything: bursty supervision would be <i>easier</i> to spot, and easier to imitate.</p>
+<p><b>No real LLM traces.</b> The organisers' held-out set is not available to us, so there is no leaderboard number here and we do not imply one. Our claim is about the shape of the problem, not about a particular model's behaviour.</p>
+<p><b>Two channels only.</b> Identity probes and attestation are discussed but not built. The obvious next experiment is to add a probe channel and run it up the same ladder; our prediction, which we have not tested, is that probes inherit the same weakness — they are behaviour the adversary can rehearse — while attestation does not.</p>
+<p><b>Modest scale.</b> 600 traces per level, 102470 events, five folds. Enough to see a sign flip; not enough to certify a small difference.</p>
+
+<h2>7. Reproducibility</h2>
+<p>Everything in this report comes from one command on a clean clone: <code>npm ci &amp;&amp; npm run build &amp;&amp; npm run run &amp;&amp; npm run verify</code>. The L0 dataset hash is <code>8cd1542a484a8b54…</code>; regenerating it elsewhere reproduces every figure. <code>verify.mjs</code> implements AC-01–AC-15 from <code>SPEC.md</code>: determinism, no leakage through the feature API, grouped folds, a measured chance floor, the direction of every claim we make, the rule that the report is a pure function of <code>results.json</code> (editing a number by hand makes the build fail), and the page budget. Total runtime, 191 s.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>UK AI Security Institute, <i>Incident report: unsanctioned agent behaviour during cyber testing</i>, 2026. aisi.gov.uk</li>
+<li>Apart Research, <i>Agent Attribution Hackathon</i>, 11–13 December 2026. apartresearch.com/sprints/agent-attribution-2026</li>
+<li>Transluce, <i>Agent activity</i>; Collusion wiki — discovery and monitoring approaches cited in the sprint brief.</li>
+<li>Cloudflare, <i>Signed agents</i> (Web Bot Auth) — the attestation channel the brief points to.</li>
+<li>Reuters, <i>How a Texas student blew the whistle on a rogue AI hacking attempt</i>, 2026 — cited in the brief.</li>
+</ol>
+
+<div class="cn"><b>中文摘要.</b>本文把「这条行为轨迹背后有没有人、管得多紧」做成可复现的测试台：五类行动者、两个通道（何时动手 / 动了什么）、五级逃逸，每级 600 条轨迹，按「组织」分组五折。三句话：① 时间能读出绳子有多紧（ρ=0.95）；② 时间看起来也能读出意图（AUC=0.90），但把绳子固定住就掉到随机（AUC=0.48）——那个高分是在读绳子；③ 目标通道正好相反：意图 AUC=0.95，固定意图后读松紧只有 ρ=0.10。逃逸的账本：agent 装作被监管，每步多等 60 秒；人一键批准，不花钱就把通道抹平；目标伪装把意图打到随机（0.95→0.53），代价是放弃 63% 的敏感面。最要命的一条：在旧数据上训好的检测器遇到换了纪律的对手会<b>反向</b>（ρ=-0.72），不是变笨，是说反。</div>
+
+</body></html>
