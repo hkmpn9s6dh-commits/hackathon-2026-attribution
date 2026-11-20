@@ -102,9 +102,9 @@ function save(name, content) {
 
   const T = R.summary;
   const panels = [
-    { x: 16, title: 'A. Does it know the leash?', unit: 'Spearman ρ', chance: 0, bars: [['timing', T.control_rho_timing_L0, C_TIMING], ['targets', T.control_rho_target_L0, C_TARGET]] },
-    { x: 224, title: 'B. Intent, all five classes', unit: 'AUC', chance: 0.5, bars: [['timing', T.intent_auc_timing_L0, C_TIMING], ['targets', T.intent_auc_target_L0, C_TARGET]] },
-    { x: 432, title: 'C. Intent, leash held fixed', unit: 'AUC', chance: 0.5, bars: [['timing', T.intent_auc_matched_timing, C_TIMING], ['targets', T.intent_auc_matched_target, C_TARGET]] },
+    { x: 16, title: 'A. Does it know the leash?', unit: 'Spearman ρ · chance = 0', chance: 0, bars: [['timing', T.control_rho_timing_L0, C_TIMING], ['targets', T.control_rho_target_L0, C_TARGET]] },
+    { x: 224, title: 'B. Intent, all five classes', unit: 'AUC · dashed = chance', chance: 0.5, bars: [['timing', T.intent_auc_timing_L0, C_TIMING], ['targets', T.intent_auc_target_L0, C_TARGET]] },
+    { x: 432, title: 'C. Intent, leash held fixed', unit: 'AUC · dashed = chance', chance: 0.5, bars: [['timing', T.intent_auc_matched_timing, C_TIMING], ['targets', T.intent_auc_matched_target, C_TARGET]] },
   ];
   for (const p of panels) {
     const w = 176, h = 118, y = 76;
@@ -112,9 +112,10 @@ function save(name, content) {
     o.push(text(p.x, 56, p.title, { size: 9, weight: 'bold' }));
     o.push(text(p.x, 68, p.unit, { size: 8, fill: MUTED }));
     o.push(line(p.x + 6, y + h, p.x + w, y + h, { stroke: INK }));
-    const cy = y + h - ((p.chance - lo) / (hi - lo)) * h;
-    o.push(line(p.x + 6, cy, p.x + w, cy, { stroke: C_CHANCE, dash: '3 3' }));
-    o.push(text(p.x + 8, cy - 3, 'chance', { size: 7.5, fill: C_CHANCE }));
+    if (p.chance > 0) {
+      const cy = y + h - ((p.chance - lo) / (hi - lo)) * h;
+      o.push(line(p.x + 6, cy, p.x + w, cy, { stroke: C_CHANCE, dash: '3 3' }));
+    }
     p.bars.forEach(([label, v, color], i) => {
       const bh = Math.max(1, ((v - lo) / (hi - lo)) * h);
       const bx = p.x + 22 + i * 78;

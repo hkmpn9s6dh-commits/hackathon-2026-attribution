@@ -89,6 +89,7 @@ const html = `<!doctype html>
   <div class="links">
     <a class="primary" href="report.pdf">Report (PDF, 6 pages)</a>
     <a href="https://github.com/hkmpn9s6dh-commits/hackathon-2026-attribution">Code</a>
+    <a href="attribution.mp4">Video (3:15, with narration)</a>
     <a href="results.json">results.json</a>
   </div>
 </section>

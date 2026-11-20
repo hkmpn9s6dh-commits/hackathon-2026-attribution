@@ -1,7 +1,7 @@
 // Renders the slides, synthesises narration, and assembles out/video/attribution.mp4.
 import { chromium } from 'playwright-core';
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 const NARRATION = [
   `When an AI agent shows up in an incident, the first question is not which model. It is who, if anyone, is steering it.
@@ -74,9 +74,9 @@ for (let i = 1; i <= NARRATION.length; i++) {
 }
 
 const list = 'out/video/list.txt';
-execFileSync('node', ['-e', `require('fs').writeFileSync(${JSON.stringify(list)}, ${JSON.stringify(segs.map((s) => `file '${s}'`).join('\n'))})`]);
-execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list,
-  '-c', 'copy', '-movflags', '+faststart', 'out/video/attribution.mp4']);
+writeFileSync(list, segs.map((s) => `file '${s.split('/').pop()}'`).join(String.fromCharCode(10)));
+execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', 'list.txt',
+  '-c', 'copy', '-movflags', '+faststart', 'attribution.mp4'], { cwd: 'out/video' });
 
 const total = duration('out/video/attribution.mp4');
 console.log(`wrote out/video/attribution.mp4 (${total.toFixed(1)} s)`);
