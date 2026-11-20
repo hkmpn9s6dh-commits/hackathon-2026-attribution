@@ -1,67 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="330" viewBox="0 0 640 330" font-family='"Helvetica Neue", Arial, sans-serif'>
-<rect width="640" height="330" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="404" viewBox="0 0 640 404" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="640" height="404" fill="#ffffff"/>
 <text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >D. The evasion ladder</text>
-<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Retrained at each level (solid) versus a detector frozen at L0 (dashed). Negative ρ means the ranking is inverted.</text>
-<line x1="56" y1="242" x2="596" y2="242" stroke="#16181d" stroke-width="1" />
-<line x1="56" y1="62" x2="56" y2="242" stroke="#16181d" stroke-width="1" />
-<line x1="53" y1="242" x2="56" y2="242" stroke="#16181d" stroke-width="1" />
-<text x="50" y="245.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-1.0</text>
-<line x1="56" y1="242" x2="596" y2="242" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
-<line x1="53" y1="197" x2="56" y2="197" stroke="#16181d" stroke-width="1" />
-<text x="50" y="200.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-0.5</text>
-<line x1="56" y1="197" x2="596" y2="197" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
-<line x1="53" y1="152" x2="56" y2="152" stroke="#16181d" stroke-width="1" />
-<text x="50" y="155.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
-<line x1="56" y1="152" x2="596" y2="152" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
-<line x1="53" y1="107" x2="56" y2="107" stroke="#16181d" stroke-width="1" />
-<text x="50" y="110.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.5</text>
-<line x1="56" y1="107" x2="596" y2="107" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
-<line x1="53" y1="62" x2="56" y2="62" stroke="#16181d" stroke-width="1" />
-<text x="50" y="65.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
-<line x1="56" y1="62" x2="596" y2="62" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
-<line x1="56" y1="242" x2="56" y2="245" stroke="#16181d" stroke-width="1" />
-<text x="56" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0</text>
-<line x1="191" y1="242" x2="191" y2="245" stroke="#16181d" stroke-width="1" />
-<text x="191" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L1</text>
-<line x1="326" y1="242" x2="326" y2="245" stroke="#16181d" stroke-width="1" />
-<text x="326" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L2</text>
-<line x1="461" y1="242" x2="461" y2="245" stroke="#16181d" stroke-width="1" />
-<text x="461" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3</text>
-<line x1="596" y1="242" x2="596" y2="245" stroke="#16181d" stroke-width="1" />
-<text x="596" y="257" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L4</text>
-<path d="M56.0,66.1 L191.0,121.0 L326.0,147.9 L461.0,106.4 L596.0,106.4" fill="none" stroke="#b45309" stroke-width="2"  opacity="1"/>
-<circle cx="56" cy="66.05691911349106" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
-<circle cx="191" cy="120.99887673279311" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
-<circle cx="326" cy="147.91208489088632" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
-<circle cx="461" cy="106.36883810449604" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
-<circle cx="596" cy="106.36883810449604" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
-<path d="M56.0,137.0 L191.0,137.2 L326.0,137.6 L461.0,138.7 L596.0,150.8" fill="none" stroke="#1d4ed8" stroke-width="2"  opacity="1"/>
-<circle cx="56" cy="137.0137526361034" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="191" cy="137.1593571363445" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="326" cy="137.64187750886418" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="461" cy="138.65435352489993" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="596" cy="150.8364222266843" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<path d="M56.0,64.9 L191.0,63.2 L326.0,66.1 L461.0,65.0 L596.0,90.7" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="4 3" opacity="1"/>
-<circle cx="56" cy="64.93020833333333" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="191" cy="63.19843750000001" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="326" cy="66.11979166666666" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="461" cy="65.03958333333333" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<circle cx="596" cy="90.73541666666668" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
-<path d="M56.0,66.1 L191.0,122.9 L326.0,137.5 L461.0,84.7 L596.0,107.4" fill="none" stroke="#111827" stroke-width="2"  opacity="1"/>
-<circle cx="56" cy="66.05432578902045" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
-<circle cx="191" cy="122.8959572408638" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
-<circle cx="326" cy="137.48355051163117" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
-<circle cx="461" cy="84.71385344377384" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
-<circle cx="596" cy="107.39136852959638" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
-<path d="M56.0,65.9 L191.0,136.1 L326.0,163.1 L461.0,217.1 L596.0,199.0" fill="none" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="2 3" opacity="1"/>
-<line x1="56" y1="273" x2="74" y2="273" stroke="#b45309" stroke-width="2" />
-<text x="80" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >timing → control ρ</text>
-<line x1="246" y1="273" x2="264" y2="273" stroke="#1d4ed8" stroke-width="2" />
-<text x="270" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets → control ρ</text>
-<line x1="436" y1="273" x2="454" y2="273" stroke="#111827" stroke-width="2" />
-<text x="460" y="276" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >both → control ρ</text>
-<line x1="56" y1="289" x2="74" y2="289" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="4 3"/>
-<text x="80" y="292" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >targets → intent AUC</text>
-<line x1="246" y1="289" x2="264" y2="289" stroke="#6b7280" stroke-width="2" stroke-dasharray="2 3"/>
-<text x="270" y="292" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >frozen L0 detector, transferred</text>
+<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >Retrained at each level (solid) versus a detector frozen at L0 (dashed). Lower panel: intent from targets only.</text>
+<text x="66" y="50" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >leash ρ</text>
+<line x1="66" y1="186" x2="590" y2="186" stroke="#16181d" stroke-width="1" />
+<line x1="66" y1="58" x2="66" y2="186" stroke="#16181d" stroke-width="1" />
+<line x1="63" y1="186" x2="66" y2="186" stroke="#16181d" stroke-width="1" />
+<text x="60" y="189.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-1.0</text>
+<line x1="66" y1="186" x2="590" y2="186" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="154" x2="66" y2="154" stroke="#16181d" stroke-width="1" />
+<text x="60" y="157.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >-0.5</text>
+<line x1="66" y1="154" x2="590" y2="154" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="122" x2="66" y2="122" stroke="#16181d" stroke-width="1" />
+<text x="60" y="125.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.0</text>
+<line x1="66" y1="122" x2="590" y2="122" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="90" x2="66" y2="90" stroke="#16181d" stroke-width="1" />
+<text x="60" y="93.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.5</text>
+<line x1="66" y1="90" x2="590" y2="90" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="58" x2="66" y2="58" stroke="#16181d" stroke-width="1" />
+<text x="60" y="61.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="66" y1="58" x2="590" y2="58" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="66" y1="186" x2="66" y2="189" stroke="#16181d" stroke-width="1" />
+<text x="66" y="201" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0</text>
+<line x1="197" y1="186" x2="197" y2="189" stroke="#16181d" stroke-width="1" />
+<text x="197" y="201" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L1</text>
+<line x1="328" y1="186" x2="328" y2="189" stroke="#16181d" stroke-width="1" />
+<text x="328" y="201" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L2</text>
+<line x1="459" y1="186" x2="459" y2="189" stroke="#16181d" stroke-width="1" />
+<text x="459" y="201" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3</text>
+<line x1="590" y1="186" x2="590" y2="189" stroke="#16181d" stroke-width="1" />
+<text x="590" y="201" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L4</text>
+<text x="66" y="230" font-size="8.5" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >intent AUC</text>
+<line x1="66" y1="346" x2="590" y2="346" stroke="#16181d" stroke-width="1" />
+<line x1="66" y1="238" x2="66" y2="346" stroke="#16181d" stroke-width="1" />
+<line x1="63" y1="346" x2="66" y2="346" stroke="#16181d" stroke-width="1" />
+<text x="60" y="349.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.4</text>
+<line x1="66" y1="346" x2="590" y2="346" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="310" x2="66" y2="310" stroke="#16181d" stroke-width="1" />
+<text x="60" y="313.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.6</text>
+<line x1="66" y1="310" x2="590" y2="310" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="274" x2="66" y2="274" stroke="#16181d" stroke-width="1" />
+<text x="60" y="277.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0.8</text>
+<line x1="66" y1="274" x2="590" y2="274" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="63" y1="238" x2="66" y2="238" stroke="#16181d" stroke-width="1" />
+<text x="60" y="241.5" font-size="9" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >1.0</text>
+<line x1="66" y1="238" x2="590" y2="238" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="2 3"/>
+<line x1="66" y1="328" x2="590" y2="328" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="70" y="325" font-size="7.5" fill="#9ca3af" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >chance</text>
+<text x="66" y="361" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L0</text>
+<text x="197" y="361" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L1</text>
+<text x="328" y="361" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L2</text>
+<text x="459" y="361" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L3</text>
+<text x="590" y="361" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >L4</text>
+<path d="M66.0,60.9 L197.0,101.3 L328.0,111.7 L459.0,74.2 L590.0,90.3" fill="none" stroke="#111827" stroke-width="2"  opacity="1"/>
+<circle cx="66" cy="60.88307611663677" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="197" cy="101.30379181572536" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="328" cy="111.67719147493771" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="459" cy="74.15207356001696" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="590" cy="90.27830650993519" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<path d="M66.0,60.9 L197.0,100.0 L328.0,119.1 L459.0,89.6 L590.0,89.6" fill="none" stroke="#b45309" stroke-width="2"  opacity="1"/>
+<circle cx="66" cy="60.88492025848252" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="197" cy="99.95475678776398" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="328" cy="119.09303814463027" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="459" cy="89.55117376319718" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<circle cx="590" cy="89.55117376319718" r="2.6" fill="#b45309" stroke="none" stroke-width="1"/>
+<path d="M66.0,111.3 L197.0,111.4 L328.0,111.8 L459.0,112.5 L590.0,121.2" fill="none" stroke="#1d4ed8" stroke-width="2"  opacity="1"/>
+<circle cx="66" cy="111.34311298567351" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="197" cy="111.44665396362275" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="328" cy="111.78977956185898" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="459" cy="112.50976250659552" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="590" cy="121.17256691675328" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<path d="M66.0,60.8 L197.0,110.7 L328.0,129.9 L459.0,168.3 L590.0,155.4" fill="none" stroke="#6b7280" stroke-width="2" stroke-dasharray="2 3" opacity="1"/>
+<circle cx="66" cy="60.77914106480995" r="2.6" fill="#6b7280" stroke="none" stroke-width="1"/>
+<circle cx="197" cy="110.72400065947474" r="2.6" fill="#6b7280" stroke="none" stroke-width="1"/>
+<circle cx="328" cy="129.8785113651221" r="2.6" fill="#6b7280" stroke="none" stroke-width="1"/>
+<circle cx="459" cy="168.27037413082883" r="2.6" fill="#6b7280" stroke="none" stroke-width="1"/>
+<circle cx="590" cy="155.440935381064" r="2.6" fill="#6b7280" stroke="none" stroke-width="1"/>
+<path d="M66.0,246.4 L197.0,246.4 L328.0,246.2 L459.0,246.2 L590.0,322.6" fill="none" stroke="#1d4ed8" stroke-width="2"  opacity="1"/>
+<circle cx="66" cy="246.41145833333334" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="197" cy="246.36354166666666" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="328" cy="246.228125" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="459" cy="246.18854166666665" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<circle cx="590" cy="322.58229166666666" r="2.6" fill="#1d4ed8" stroke="none" stroke-width="1"/>
+<path d="M66.0,243.9 L197.0,240.4 L328.0,246.2 L459.0,244.1 L590.0,295.5" fill="none" stroke="#111827" stroke-width="2" stroke-dasharray="5 3" opacity="1"/>
+<circle cx="66" cy="243.86041666666665" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="197" cy="240.396875" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="328" cy="246.23958333333331" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="459" cy="244.07916666666665" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<circle cx="590" cy="295.47083333333336" r="2.6" fill="#111827" stroke="none" stroke-width="1"/>
+<line x1="66" y1="377" x2="82" y2="377" stroke="#b45309" stroke-width="2" />
+<text x="87" y="380" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >leash ρ, timing</text>
+<line x1="240" y1="377" x2="256" y2="377" stroke="#1d4ed8" stroke-width="2" />
+<text x="261" y="380" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >leash ρ, targets</text>
+<line x1="414" y1="377" x2="430" y2="377" stroke="#111827" stroke-width="2" />
+<text x="435" y="380" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >leash ρ, both</text>
+<line x1="66" y1="390" x2="82" y2="390" stroke="#6b7280" stroke-width="2" stroke-dasharray="2 3"/>
+<text x="87" y="393" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >frozen L0 detector</text>
+<line x1="240" y1="390" x2="256" y2="390" stroke="#1d4ed8" stroke-width="2" />
+<text x="261" y="393" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >intent AUC, targets</text>
+<line x1="414" y1="390" x2="430" y2="390" stroke="#111827" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="435" y="393" font-size="8" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >intent AUC, both</text>
 </svg>

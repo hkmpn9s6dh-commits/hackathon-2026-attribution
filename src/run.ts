@@ -6,7 +6,7 @@ import { aucBinary, spearman } from './model/metrics.js';
 import { expectedLevel } from './model/models.js';
 import { CLASSES, CLASS_LABEL, CONTROL, EVASION_LABEL, NONBENIGN, type EvasionLevel, type Trace } from './schema.js';
 import {
-  buildX, crossValidate, evalConfig, pairwiseAuc, permutationImportance, scoreBundle, trainEval,
+  bootstrapCi, buildX, crossValidate, evalConfig, pairwiseAuc, permutationImportance, scoreBundle, trainEval,
   type FeatureSet, type Metrics, type ModelKind,
 } from './exp/core.js';
 import { trainGbm } from './model/models.js';
@@ -43,6 +43,19 @@ function main(): void {
       fold_count: 5,
       features: FEATURE_NAMES,
       class_order: [...CLASSES].sort(),
+      actors_per_class: ORGS,
+      actors_total: ORGS * CLASSES.length,
+      unit_of_generalisation: 'org = one actor; four traces per actor; folds split actors, never traces',
+      cross_tab: {
+        note: 'leash level x intent; the confound is visible in the row counts',
+        cells: [
+          { leash: 0, nonbenign: 1, n: ORGS * TRACES_PER_ORG, classes: ['rogue'] },
+          { leash: 1, nonbenign: 0, n: ORGS * TRACES_PER_ORG, classes: ['vloose_benign'] },
+          { leash: 2, nonbenign: 1, n: ORGS * TRACES_PER_ORG, classes: ['loose_nonbenign'] },
+          { leash: 2, nonbenign: 0, n: ORGS * TRACES_PER_ORG, classes: ['loose_benign'] },
+          { leash: 3, nonbenign: 1, n: ORGS * TRACES_PER_ORG, classes: ['tight_nonbenign'] },
+        ],
+      },
       classes: CLASSES.map((c) => ({ key: c, label: CLASS_LABEL[c], control: CONTROL[c] })),
       evasion_levels: LEVELS.map((l) => ({ level: l, label: EVASION_LABEL[l] })),
     },
@@ -194,12 +207,35 @@ function main(): void {
 
   // --- Chance floor ----------------------------------------------------------
   const perm: any[] = [];
-  for (let s = 1; s <= 5; s++) {
+  for (let s = 1; s <= 20; s++) {
     const m = evalConfig(sets.get(0)!, 'both', 'gbm', { heads: ['control', 'intent'], shuffleSeed: s * 977 });
     perm.push({ seed: s * 977, control_rho: m.control.rho, intent_auc: m.intent.auc });
   }
   report.permutation = perm;
   stamp(t0, 'perm');
+
+  // Bootstrap intervals over actors: the population claim, not the fit.
+  const bMain = crossValidate(sets.get(0)!, 'timing', 'gbm', { heads: ['control', 'intent'] });
+  const bTarget = crossValidate(sets.get(0)!, 'target', 'gbm', { heads: ['intent'] });
+  const bBoth = crossValidate(sets.get(0)!, 'both', 'gbm', { heads: ['five', 'control', 'intent'] });
+  const bTrans = trainEval(sets.get(0)!, sets.get(3)!, 'both', 'gbm');
+  const bLoose = crossValidate(looseOnly, 'timing', 'gbm', { heads: ['intent'] });
+  const rho = (b: typeof bMain) => (idx: number[]) => spearman(idx.map((i) => expectedLevel(b.p4[i], [0, 1, 2, 3])), idx.map((i) => b.y4[i]));
+  const auc = (b: typeof bMain) => (idx: number[]) => aucBinary(idx.map((i) => b.p2[i][1]), idx.map((i) => b.y2[i]));
+  const f1 = (b: typeof bMain) => (idx: number[]) => {
+    let c = 0;
+    for (const i of idx) { let best = 0; for (let c2 = 1; c2 < b.p5[i].length; c2++) if (b.p5[i][c2] > b.p5[i][best]) best = c2; if (best === b.y5[i]) c++; }
+    return c / Math.max(1, idx.length);
+  };
+  report.ci = {
+    control_rho_timing_L0: bootstrapCi(bMain, rho(bMain)),
+    intent_auc_matched_timing: bootstrapCi(bLoose, auc(bLoose)),
+    intent_auc_target_L0: bootstrapCi(bTarget, auc(bTarget)),
+    intent_auc_both_L0: bootstrapCi(bBoth, auc(bBoth)),
+    five_acc_both_L0: bootstrapCi(bBoth, f1(bBoth)),
+    control_rho_transfer_L3: bootstrapCi(bTrans, rho(bTrans)),
+  };
+  stamp(t0, 'ci');
 
   report.importance = permutationImportance(sets.get(0)!, 'both', 'gbm', 2);
   stamp(t0, 'importance');
@@ -230,6 +266,8 @@ function main(): void {
     control_rho_perm_mean: perm.reduce((s, p) => s + p.control_rho, 0) / perm.length,
     delay_rogue_L0: cost.L0.rogue.delay,
     delay_rogue_L1: cost.L1.rogue.delay,
+    per_hour_rogue_L0: cost.L0.rogue.per_hour,
+    per_hour_rogue_L1: cost.L1.rogue.per_hour,
     sensitive_nonbenign_L0: (cost.L0.loose_nonbenign.sensitive + cost.L0.tight_nonbenign.sensitive + cost.L0.rogue.sensitive) / 3,
     sensitive_nonbenign_L4: (cost.L4.loose_nonbenign.sensitive + cost.L4.tight_nonbenign.sensitive + cost.L4.rogue.sensitive) / 3,
     control_rho_matched_target: report.matched_control.target,

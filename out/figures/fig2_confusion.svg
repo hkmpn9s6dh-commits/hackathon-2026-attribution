@@ -1,66 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="330" height="320" viewBox="0 0 330 320" font-family='"Helvetica Neue", Arial, sans-serif'>
-<rect width="330" height="320" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="330" viewBox="0 0 340 330" font-family='"Helvetica Neue", Arial, sans-serif'>
+<rect width="340" height="330" fill="#ffffff"/>
 <text x="0" y="14" font-size="12" fill="#16181d" text-anchor="start" font-weight="bold" font-family='"Helvetica Neue", Arial, sans-serif' >B. Five-way confusion, L0</text>
-<text x="0" y="30" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >macro-F1 0.93 · rows = truth, columns = prediction</text>
-<text x="84" y="86" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A rogue</text>
-<rect x="92" y="62" width="38" height="38" fill="rgba(17,24,39,0.960)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="111" y="86" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >120</text>
-<rect x="132" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="151" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="172" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="191" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="212" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="231" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="252" y="62" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="271" y="86" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<text x="84" y="126" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B close</text>
-<rect x="92" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="111" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="132" y="102" width="38" height="38" fill="rgba(17,24,39,0.960)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="151" y="126" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >120</text>
-<rect x="172" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="191" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="212" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="231" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="252" y="102" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="271" y="126" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<text x="84" y="166" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C loose</text>
-<rect x="92" y="142" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="111" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="132" y="142" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="151" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="172" y="142" width="38" height="38" fill="rgba(17,24,39,0.855)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="191" y="166" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >106</text>
-<rect x="212" y="142" width="38" height="38" fill="rgba(17,24,39,0.105)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="231" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >6</text>
-<rect x="252" y="142" width="38" height="38" fill="rgba(17,24,39,0.120)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="271" y="166" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >8</text>
-<text x="84" y="206" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D v.loose</text>
-<rect x="92" y="182" width="38" height="38" fill="rgba(17,24,39,0.075)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="111" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >2</text>
-<rect x="132" y="182" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="151" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="172" y="182" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="191" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="212" y="182" width="38" height="38" fill="rgba(17,24,39,0.945)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="231" y="206" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >118</text>
-<rect x="252" y="182" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="271" y="206" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<text x="84" y="246" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E loose+</text>
-<rect x="92" y="222" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="111" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="132" y="222" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="151" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
-<rect x="172" y="222" width="38" height="38" fill="rgba(17,24,39,0.195)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="191" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >18</text>
-<rect x="212" y="222" width="38" height="38" fill="rgba(17,24,39,0.098)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="231" y="246" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >5</text>
-<rect x="252" y="222" width="38" height="38" fill="rgba(17,24,39,0.788)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
-<text x="271" y="246" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >97</text>
-<text x="111" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A</text>
-<text x="151" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B</text>
-<text x="191" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C</text>
-<text x="231" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D</text>
-<text x="271" y="54" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E</text>
-<text x="171" y="32" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >predicted</text>
+<text x="0" y="32" font-size="9" fill="#6b7280" text-anchor="start" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >macro-F1 0.93 · rows = truth, columns = prediction</text>
+<text x="88" y="94" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A rogue</text>
+<rect x="96" y="70" width="38" height="38" fill="rgba(17,24,39,0.960)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="115" y="94" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >120</text>
+<rect x="136" y="70" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="155" y="94" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="176" y="70" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="195" y="94" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="216" y="70" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="235" y="94" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="256" y="70" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="275" y="94" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<text x="88" y="134" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B close</text>
+<rect x="96" y="110" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="115" y="134" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="136" y="110" width="38" height="38" fill="rgba(17,24,39,0.960)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="155" y="134" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >120</text>
+<rect x="176" y="110" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="195" y="134" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="216" y="110" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="235" y="134" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="256" y="110" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="275" y="134" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<text x="88" y="174" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C loose</text>
+<rect x="96" y="150" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="115" y="174" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="136" y="150" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="155" y="174" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="176" y="150" width="38" height="38" fill="rgba(17,24,39,0.855)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="195" y="174" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >106</text>
+<rect x="216" y="150" width="38" height="38" fill="rgba(17,24,39,0.105)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="235" y="174" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >6</text>
+<rect x="256" y="150" width="38" height="38" fill="rgba(17,24,39,0.120)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="275" y="174" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >8</text>
+<text x="88" y="214" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D v.loose</text>
+<rect x="96" y="190" width="38" height="38" fill="rgba(17,24,39,0.075)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="115" y="214" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >2</text>
+<rect x="136" y="190" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="155" y="214" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="176" y="190" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="195" y="214" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="216" y="190" width="38" height="38" fill="rgba(17,24,39,0.945)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="235" y="214" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >118</text>
+<rect x="256" y="190" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="275" y="214" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<text x="88" y="254" font-size="8.5" fill="#6b7280" text-anchor="end" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E loose+</text>
+<rect x="96" y="230" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="115" y="254" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="136" y="230" width="38" height="38" fill="rgba(17,24,39,0.060)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="155" y="254" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >0</text>
+<rect x="176" y="230" width="38" height="38" fill="rgba(17,24,39,0.195)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="195" y="254" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >18</text>
+<rect x="216" y="230" width="38" height="38" fill="rgba(17,24,39,0.098)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="235" y="254" font-size="9" fill="#16181d" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >5</text>
+<rect x="256" y="230" width="38" height="38" fill="rgba(17,24,39,0.788)" stroke="none" stroke-width="1" rx="0" opacity="1"/>
+<text x="275" y="254" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >97</text>
+<text x="115" y="60" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >A</text>
+<text x="155" y="60" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >B</text>
+<text x="195" y="60" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >C</text>
+<text x="235" y="60" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >D</text>
+<text x="275" y="60" font-size="9" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >E</text>
+<text x="175" y="42" font-size="8" fill="#6b7280" text-anchor="middle" font-weight="normal" font-family='"Helvetica Neue", Arial, sans-serif' >predicted</text>
 </svg>

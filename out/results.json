@@ -37,6 +37,54 @@
       "tight_nonbenign",
       "vloose_benign"
     ],
+    "actors_per_class": 30,
+    "actors_total": 150,
+    "unit_of_generalisation": "org = one actor; four traces per actor; folds split actors, never traces",
+    "cross_tab": {
+      "note": "leash level x intent; the confound is visible in the row counts",
+      "cells": [
+        {
+          "leash": 0,
+          "nonbenign": 1,
+          "n": 120,
+          "classes": [
+            "rogue"
+          ]
+        },
+        {
+          "leash": 1,
+          "nonbenign": 0,
+          "n": 120,
+          "classes": [
+            "vloose_benign"
+          ]
+        },
+        {
+          "leash": 2,
+          "nonbenign": 1,
+          "n": 120,
+          "classes": [
+            "loose_nonbenign"
+          ]
+        },
+        {
+          "leash": 2,
+          "nonbenign": 0,
+          "n": 120,
+          "classes": [
+            "loose_benign"
+          ]
+        },
+        {
+          "leash": 3,
+          "nonbenign": 1,
+          "n": 120,
+          "classes": [
+            "tight_nonbenign"
+          ]
+        }
+      ]
+    },
     "classes": [
       {
         "key": "rogue",
@@ -2446,8 +2494,109 @@
       "seed": 4885,
       "control_rho": -0.07708318798267269,
       "intent_auc": 0.4809953703703704
+    },
+    {
+      "seed": 5862,
+      "control_rho": 0.08928232500492596,
+      "intent_auc": 0.3884722222222222
+    },
+    {
+      "seed": 6839,
+      "control_rho": 0.11146067025224991,
+      "intent_auc": 0.480162037037037
+    },
+    {
+      "seed": 7816,
+      "control_rho": -0.22911689650292602,
+      "intent_auc": 0.42875
+    },
+    {
+      "seed": 8793,
+      "control_rho": -0.006380550064858073,
+      "intent_auc": 0.4556365740740741
+    },
+    {
+      "seed": 9770,
+      "control_rho": -0.10027027446016294,
+      "intent_auc": 0.3965740740740741
+    },
+    {
+      "seed": 10747,
+      "control_rho": 0.011595288465786936,
+      "intent_auc": 0.41274305555555557
+    },
+    {
+      "seed": 11724,
+      "control_rho": -0.16026768970351382,
+      "intent_auc": 0.4568402777777778
+    },
+    {
+      "seed": 12701,
+      "control_rho": 0.07651075351295895,
+      "intent_auc": 0.34118055555555554
+    },
+    {
+      "seed": 13678,
+      "control_rho": -0.05403222921444364,
+      "intent_auc": 0.42510416666666667
+    },
+    {
+      "seed": 14655,
+      "control_rho": -0.07351245345512904,
+      "intent_auc": 0.44559027777777777
+    },
+    {
+      "seed": 15632,
+      "control_rho": -0.06996615210617071,
+      "intent_auc": 0.46217592592592593
+    },
+    {
+      "seed": 16609,
+      "control_rho": 0.004569004395459091,
+      "intent_auc": 0.5063194444444444
+    },
+    {
+      "seed": 17586,
+      "control_rho": -0.165231115410422,
+      "intent_auc": 0.4902199074074074
+    },
+    {
+      "seed": 18563,
+      "control_rho": -0.12336660913147907,
+      "intent_auc": 0.44059027777777776
+    },
+    {
+      "seed": 19540,
+      "control_rho": 0.025260416203160763,
+      "intent_auc": 0.4581134259259259
     }
   ],
+  "ci": {
+    "control_rho_timing_L0": [
+      0.935941825383761,
+      0.9658486987157752
+    ],
+    "intent_auc_matched_timing": [
+      0.381875,
+      0.5804573512906847
+    ],
+    "intent_auc_target_L0": [
+      0.9027443910256411,
+      0.9547827449845679
+    ],
+    "intent_auc_both_L0": [
+      0.9362350074962519,
+      0.9722170164917541
+    ],
+    "five_acc_both_L0": [
+      0.91,
+      0.9583333333333334
+    ],
+    "control_rho_transfer_L3": [
+      -0.8042493115286529,
+      -0.6516492864777869
+    ]
+  },
   "importance": [
     {
       "name": "c_sensitive_frac",
@@ -2562,10 +2711,12 @@
     "none_vs_tight_timing_L1": 0.5105902777777778,
     "none_vs_tight_timing_L2": 0.5086111111111111,
     "none_vs_tight_timing_L3": 1,
-    "intent_auc_perm_mean": 0.4814328703703704,
-    "control_rho_perm_mean": -0.014531458440928407,
+    "intent_auc_perm_mean": 0.44978182870370365,
+    "control_rho_perm_mean": -0.036806140220960286,
     "delay_rogue_L0": 1.2428707351414827,
     "delay_rogue_L1": 60.016852755312996,
+    "per_hour_rogue_L0": 30.10078456802233,
+    "per_hour_rogue_L1": 30.174823885883825,
     "sensitive_nonbenign_L0": 0.3420608532953535,
     "sensitive_nonbenign_L4": 0.12591102519650035,
     "control_rho_matched_target": 0.10469149122881222,
@@ -2574,6 +2725,6 @@
     "matched_rogueL1_vs_tightL0_timing": 0.5822222222222222,
     "matched_tightL2_vs_rogueL0_timing": 0.5375,
     "dataset_hash": "8cd1542a484a8b54a759fb4fdd419313282ba77b748607c759f6ffe9d4a9abc2",
-    "runtime_s": 191.145
+    "runtime_s": 346.818
   }
 }

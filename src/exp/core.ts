@@ -39,6 +39,7 @@ export interface FoldBundle {
   y4: number[]; p4: number[][];
   y2: number[]; p2: number[][];
   fold: number[];
+  orgs: string[];
 }
 
 function foldsOf(traces: Trace[]): Map<string, number> {
@@ -111,7 +112,7 @@ export function crossValidate(
     }
   }
 
-  return { y5, p5, y4, p4, y2, p2, fold };
+  return { y5, p5, y4, p4, y2, p2, fold, orgs: traces.map((t) => t.org) };
 }
 
 /** Train on one level, score on another: the transfer test. */
@@ -145,7 +146,10 @@ export function trainEval(
     m.predictProba(Xte).forEach((row, i) => (p2[i] = row));
   }
 
-  return { y5: teLab.y5, p5, y4: teLab.y4, p4, y2: teLab.y2, p2, fold: new Array(testTraces.length).fill(0) };
+  return {
+    y5: teLab.y5, p5, y4: teLab.y4, p4, y2: teLab.y2, p2,
+    fold: new Array(testTraces.length).fill(0), orgs: testTraces.map((t) => t.org),
+  };
 }
 
 export function scoreBundle(b: FoldBundle): Metrics {
@@ -203,6 +207,35 @@ export function pairwiseAuc(b: FoldBundle, lowLevel: number, highLevel: number):
     else if (b.y4[i] === highLevel) { scores.push(expectedLevel(b.p4[i], LEVELS)); labels.push(1); }
   }
   return aucBinary(scores, labels);
+}
+
+/**
+ * Org-level bootstrap: resample actors, not traces. Returns the 2.5/97.5 percentiles.
+ * No retraining — the interval is about the population, not about the fit.
+ */
+export function bootstrapCi(
+  b: FoldBundle, metric: (idx: number[]) => number, draws = 400, seed = 4242,
+): [number, number] {
+  const orgs = [...new Set(b.orgs)];
+  const byOrg = new Map<string, number[]>();
+  b.orgs.forEach((o, i) => {
+    if (!byOrg.has(o)) byOrg.set(o, []);
+    byOrg.get(o)!.push(i);
+  });
+  let s = seed;
+  const vals: number[] = [];
+  for (let d = 0; d < draws; d++) {
+    const idx: number[] = [];
+    for (let k = 0; k < orgs.length; k++) {
+      s = (s * 1103515245 + 12345) % 2147483648;
+      const pick = orgs[s % orgs.length];
+      idx.push(...byOrg.get(pick)!);
+    }
+    vals.push(metric(idx));
+  }
+  vals.sort((a, b2) => a - b2);
+  const at = (q: number) => vals[Math.min(vals.length - 1, Math.max(0, Math.round(q * (vals.length - 1))))];
+  return [at(0.025), at(0.975)];
 }
 
 /** Permutation importance: macro-F1 drop when one column is rotated on the test fold. */
